@@ -1,0 +1,40 @@
+<div class="bg-light py-4 border-bottom">
+  <div class="container">
+    <h1 class="h3 mb-1">Welcome, {{ me()?.name || 'Guest' }}</h1>
+    <div class="text-muted">Manage bills, complaints and your profile from one place.</div>
+  </div>
+</div>
+
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <div class="text-uppercase small text-muted">Current Bill</div>
+              <div class="display-6 fw-bold">{{ (billsDue$ | async)?.find(b=>b.status==='Due')?.amount | currency:'INR' }}</div>
+            </div>
+            <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center" style="width:48px;height:48px;">
+              <i class="bi bi-currency-rupee fs-4"></i>
+            </div>
+          </div>
+          <div class="mt-2 text-muted">Due by {{ (billsDue$ | async)?.find(b=>b.status==='Due')?.due_date | date:'mediumDate' }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card shadow-sm border-0 h-100">
+        <div class="card-body">
+          <h5 class="card-title">Recent Activity</h5>
+          <ul class="list-group list-group-flush">
+            <li *ngFor="let a of (activities$ | async)" class="list-group-item d-flex justify-content-between">
+              <span>{{ a.text }}</span>
+              <span class="text-muted small">{{ a.date | date:'mediumDate' }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
