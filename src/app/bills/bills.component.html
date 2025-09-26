@@ -1,0 +1,40 @@
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="h4 mb-0">Bill History</h2>
+    <div class="text-muted">Manage your payments</div>
+  </div>
+
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table mb-0 align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Bill ID</th>
+              <th>Amount</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of (bills$ | async) | async as bills">
+              <!-- this line intentionally simple; below we map rows inside a nested ngFor for correct parsing -->
+            </tr>
+            <tr *ngFor="let b of (bills$ | async)">
+              <td>{{ b.bill_id }}</td>
+              <td>{{ b.amount | currency:'INR' }}</td>
+              <td>{{ b.due_date | date:'mediumDate' }}</td>
+              <td>
+                <span class="badge" [ngClass]="{'bg-success': b.status==='Paid','bg-warning text-dark': b.status==='Due','bg-danger': b.status==='Overdue'}">{{ b.status }}</span>
+              </td>
+              <td class="text-end">
+                <button class="btn btn-sm btn-outline-primary" (click)="pay(b)" [disabled]="b.status==='Paid'">Pay (UPI)</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

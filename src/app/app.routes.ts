@@ -3,6 +3,10 @@ import { inject } from '@angular/core';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { BillsComponent } from './bills/bills.component';
+import { ComplaintsComponent } from './complaints/complaints.component';
+import { ProfileComponent } from './profile/profile.component';
+import { HelpComponent } from './help/help.component';
 import { AuthService } from './services/auth.service';
 
 const authGuard: CanActivateFn = () => {
@@ -16,9 +20,9 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'bills', loadComponent: () => import('./placeholders/placeholder.component').then(m => m.PlaceholderComponent), data: { title: 'Bills' }, canActivate: [authGuard] },
-  { path: 'complaints', loadComponent: () => import('./placeholders/placeholder.component').then(m => m.PlaceholderComponent), data: { title: 'Complaints' }, canActivate: [authGuard] },
-  { path: 'profile', loadComponent: () => import('./placeholders/placeholder.component').then(m => m.PlaceholderComponent), data: { title: 'Profile' }, canActivate: [authGuard] },
-  { path: 'help', loadComponent: () => import('./placeholders/placeholder.component').then(m => m.PlaceholderComponent), data: { title: 'Help Chat' }, canActivate: [authGuard] },
+  { path: 'bills', component: BillsComponent, canActivate: [authGuard] },
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [authGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
+  { path: 'help', component: HelpComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: 'login' }
 ];
