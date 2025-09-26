@@ -1,12 +1,14 @@
-import { CommonModule, CurrencyPipe, DatePipe, NgFor, NgIf } from '@angular/common';
-import { Component, inject, computed } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { DataService, Bill, Activity } from '../services/data.service';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, NgIf, NgFor, CurrencyPipe, DatePipe],
+  imports: [CommonModule],
   templateUrl: './dashboard.component.html'
 })
 export class DashboardComponent {
@@ -15,10 +17,8 @@ export class DashboardComponent {
 
   me = this.auth.user;
 
-  billsDue$ = this.data.bills();
+  bills$ = this.data.bills();
   activities$ = this.data.activities();
 
-  nextDue$ = this.billsDue$;
-
-  totalDue = computed(() => 0);
+  nextDue$: Observable<Bill | undefined> = this.bills$.pipe(map(list => list.find(b => b.status === 'Due')));
 }
