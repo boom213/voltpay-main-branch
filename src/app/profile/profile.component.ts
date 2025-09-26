@@ -33,10 +33,11 @@ export class ProfileComponent {
     const u = this.me();
     if (!u) return;
     this.data.users().subscribe((list) => {
-      const next = list.map((x) => x.id === u.id ? { ...x, ...this.form.value } : x);
+      const fv = this.form.value;
+      const next = list.map((x) => x.id === u.id ? { ...x, name: String(fv.name ?? ''), address: String(fv.address ?? ''), mobile: String(fv.mobile ?? '') } : x);
       this.data.saveUsers(next);
-      const updated = { ...u, ...this.form.value };
-      this.auth.login(updated);
+      const updated = { ...u, name: String(fv.name ?? ''), address: String(fv.address ?? ''), mobile: String(fv.mobile ?? '') };
+      this.auth.login(updated as any);
       this.notify.push('success', 'Profile updated');
     });
   }
