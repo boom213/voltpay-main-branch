@@ -33,7 +33,7 @@ export class ComplaintsComponent {
 
   submit() {
     if (this.form.invalid) return this.form.markAllAsTouched();
-    const v = this.form.value;
+    const v = this.form.value as { type: string; description: string };
     const user_id = this.me()?.id ?? 0;
     this.data.addComplaint({ user_id, type: v.type, description: v.description });
     this.notify.push('success', 'Complaint registered');
