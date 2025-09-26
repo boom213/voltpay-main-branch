@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --brand-primary: #4f46e5; /* indigo-600 */
+  --brand-primary-dark: #4338ca;
+  --brand-accent: #22c55e;
+}
+
+.bg-primary {
+  background-color: var(--brand-primary) !important;
+}
+.navbar-dark .navbar-brand, .navbar-dark .nav-link { color: #fff; }
+.navbar-dark .nav-link.active { color: #e2e8f0; }
+
+.btn-primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+.btn-primary:hover { background-color: var(--brand-primary-dark); border-color: var(--brand-primary-dark); }
+
+body { background-color: #f8fafc; }
+
+.card { border-radius: 14px; }
