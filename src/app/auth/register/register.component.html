@@ -1,0 +1,103 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-9 col-lg-7">
+      <div class="card shadow-sm border-0">
+        <div class="card-body p-4 p-lg-5">
+          <h1 class="h3 fw-bold text-center mb-4">Create your account</h1>
+
+          <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label class="form-label">Full name</label>
+                <input class="form-control" formControlName="name" />
+                <div
+                  class="text-danger small"
+                  *ngIf="form.get('name')?.touched && form.get('name')?.invalid"
+                >
+                  Enter your name.
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="email"
+                />
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    form.get('email')?.touched && form.get('email')?.invalid
+                  "
+                >
+                  Enter a valid email.
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  formControlName="password"
+                />
+                <div class="text-muted small">
+                  At least 8 chars, with upper, lower and a number.
+                </div>
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    form.get('password')?.touched &&
+                    form.get('password')?.invalid
+                  "
+                >
+                  Weak password.
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label">Mobile</label>
+                <input class="form-control" formControlName="mobile" />
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    form.get('mobile')?.touched && form.get('mobile')?.invalid
+                  "
+                >
+                  Enter a valid number.
+                </div>
+              </div>
+              <div class="col-12">
+                <label class="form-label">Address</label>
+                <input class="form-control" formControlName="address" />
+                <div
+                  class="text-danger small"
+                  *ngIf="
+                    form.get('address')?.touched && form.get('address')?.invalid
+                  "
+                >
+                  Enter your address.
+                </div>
+              </div>
+            </div>
+            <button
+              class="btn btn-primary w-100 mt-4"
+              [disabled]="submitting"
+              type="submit"
+            >
+              <span *ngIf="!submitting">Create account</span>
+              <span
+                *ngIf="submitting"
+                class="spinner-border spinner-border-sm"
+              ></span>
+            </button>
+          </form>
+
+          <div class="text-center mt-3">
+            <a routerLink="/login">Back to sign in</a>
+          </div>
+
+          <div class="alert alert-danger mt-3" *ngIf="error">{{ error }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
