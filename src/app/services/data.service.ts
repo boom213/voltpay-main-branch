@@ -25,9 +25,11 @@ const LS_NOTIFS = 'voltpay_notifications';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
-  constructor(private http: HttpClient) {}
+  private base$!: Observable<DataShape>;
 
-  private base$ = this.http.get<DataShape>('/data.json').pipe(shareReplay(1));
+  constructor(private http: HttpClient) {
+    this.base$ = this.http.get<DataShape>('/data.json').pipe(shareReplay(1));
+  }
 
   users(): Observable<DataUser[]> {
     return this.base$.pipe(
