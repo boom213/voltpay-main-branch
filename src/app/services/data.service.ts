@@ -100,9 +100,9 @@ export class DataService {
 
   payBill(billId: string, userId: number) {
     this.bills().subscribe((list) => {
-      const next = list.map((b) => {
-        if (b.bill_id === billId && b.user_id === userId) return { ...b, status: 'Paid' };
-        return b;
+      const next: Bill[] = list.map((b) => {
+        if (b.bill_id === billId && b.user_id === userId) return { ...b, status: 'Paid' } as Bill;
+        return b as Bill;
       });
       this.saveBills(next);
     });
