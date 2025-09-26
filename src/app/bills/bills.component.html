@@ -18,9 +18,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let b of (bills$ | async) | async as bills">
-              <!-- this line intentionally simple; below we map rows inside a nested ngFor for correct parsing -->
-            </tr>
             <tr *ngFor="let b of (bills$ | async)">
               <td>{{ b.bill_id }}</td>
               <td>{{ b.amount | currency:'INR' }}</td>
@@ -31,6 +28,9 @@
               <td class="text-end">
                 <button class="btn btn-sm btn-outline-primary" (click)="pay(b)" [disabled]="b.status==='Paid'">Pay (UPI)</button>
               </td>
+            </tr>
+            <tr *ngIf="(bills$ | async)?.length === 0">
+              <td colspan="5" class="text-center text-muted">No bills found.</td>
             </tr>
           </tbody>
         </table>
