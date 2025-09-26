@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 
-export type NoticeType = 'success' | 'info' | 'warning' | 'danger';
+export type NoticeType = "success" | "info" | "warning" | "danger";
 
 export interface Notice {
   type: NoticeType;
   message: string;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class NotificationService {
   private notice$ = new BehaviorSubject<Notice | null>(null);
 

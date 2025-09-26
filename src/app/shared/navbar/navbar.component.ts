@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Component } from "@angular/core";
+import { RouterLink, RouterLinkActive } from "@angular/router";
 
 @Component({
-  selector: 'app-navbar',
+  selector: "app-navbar",
   standalone: true,
   imports: [RouterLink, RouterLinkActive],
-  templateUrl: './navbar.component.html'
+  templateUrl: "./navbar.component.html",
 })
 export class NavbarComponent {}

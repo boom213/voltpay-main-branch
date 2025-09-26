@@ -4,17 +4,40 @@
       <div class="card mb-3">
         <div class="card-body">
           <h5 class="card-title">Help Chat</h5>
-          <div class="chat-window mb-3" style="max-height:420px;overflow:auto;">
-            <div *ngFor="let m of messages()" class="mb-2 d-flex" [ngClass]="{'justify-content-end': m.from==='user'}">
-              <div class="p-2 rounded" [ngClass]="{'bg-primary text-white': m.from==='user','bg-light': m.from==='bot'}" style="max-width:75%;">
-                <div class="small text-muted">{{ m.time | date:'short' }}</div>
+          <div
+            class="chat-window mb-3"
+            style="max-height: 420px; overflow: auto"
+          >
+            <div
+              *ngFor="let m of messages()"
+              class="mb-2 d-flex"
+              [ngClass]="{ 'justify-content-end': m.from === 'user' }"
+            >
+              <div
+                class="p-2 rounded"
+                [ngClass]="{
+                  'bg-primary text-white': m.from === 'user',
+                  'bg-light': m.from === 'bot',
+                }"
+                style="max-width: 75%"
+              >
+                <div class="small text-muted">{{ m.time | date: "short" }}</div>
                 <div>{{ m.text }}</div>
               </div>
             </div>
-            <div *ngIf="messages().length===0" class="text-center text-muted py-4">No messages yet. Start the conversation.</div>
+            <div
+              *ngIf="messages().length === 0"
+              class="text-center text-muted py-4"
+            >
+              No messages yet. Start the conversation.
+            </div>
           </div>
           <form [formGroup]="form" (ngSubmit)="send()" class="d-flex gap-2">
-            <input class="form-control" formControlName="message" placeholder="Type your message..." />
+            <input
+              class="form-control"
+              formControlName="message"
+              placeholder="Type your message..."
+            />
             <button class="btn btn-primary">Send</button>
           </form>
         </div>

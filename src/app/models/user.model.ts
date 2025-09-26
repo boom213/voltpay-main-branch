@@ -1,1 +1,8 @@
-export interface UserModel { id: number; name: string; email: string; password?: string; address?: string; mobile?: string; }
+export interface UserModel {
+  id: number;
+  name: string;
+  email: string;
+  password?: string;
+  address?: string;
+  mobile?: string;
+}

@@ -1,5 +1,5 @@
-import { Injectable, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { Injectable, signal } from "@angular/core";
+import { Router } from "@angular/router";
 
 export interface SessionUser {
   id: number;
@@ -9,9 +9,9 @@ export interface SessionUser {
   mobile: string;
 }
 
-const LS_KEY = 'voltpay_session_user';
+const LS_KEY = "voltpay_session_user";
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class AuthService {
   user = signal<SessionUser | null>(this.read());
 
@@ -39,7 +39,7 @@ export class AuthService {
   logout() {
     this.user.set(null);
     this.write(null);
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl("/login");
   }
 
   isAuthenticated() {

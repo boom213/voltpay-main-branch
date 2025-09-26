@@ -1,15 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { DataService, Bill, Activity } from '../services/data.service';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { CommonModule } from "@angular/common";
+import { Component, inject } from "@angular/core";
+import { AuthService } from "../services/auth.service";
+import { DataService, Bill, Activity } from "../services/data.service";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 
 @Component({
-  selector: 'app-dashboard',
+  selector: "app-dashboard",
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './dashboard.component.html'
+  templateUrl: "./dashboard.component.html",
 })
 export class DashboardComponent {
   private auth = inject(AuthService);
@@ -20,5 +20,7 @@ export class DashboardComponent {
   bills$ = this.data.bills();
   activities$ = this.data.activities();
 
-  nextDue$: Observable<Bill | undefined> = this.bills$.pipe(map(list => list.find(b => b.status === 'Due')));
+  nextDue$: Observable<Bill | undefined> = this.bills$.pipe(
+    map((list) => list.find((b) => b.status === "Due")),
+  );
 }
