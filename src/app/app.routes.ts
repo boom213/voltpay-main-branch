@@ -8,6 +8,7 @@ import { ComplaintsComponent } from "./complaints/complaints.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { HelpComponent } from "./help/help.component";
 import { AuthService } from "./services/auth.service";
+import { GreenEnergyComponent } from "./auth/green-energy/green-energy.component";
 
 const authGuard: CanActivateFn = () => {
   const auth = inject(AuthService);
@@ -19,6 +20,7 @@ export const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "login" },
   { path: "login", component: LoginComponent },
   { path: "register", component: RegisterComponent },
+  { path: "green-energy", component: GreenEnergyComponent },
   {
     path: "dashboard",
     component: DashboardComponent,

@@ -1,0 +1,85 @@
+:root {
+  --color-primary: #00703c;
+  --color-secondary: #00502a;
+  --color-accent: #ffb703;
+  --color-success: #28a745;
+  --color-light: #f4fcf4;
+  --color-white: #ffffff;
+  --color-muted: #6c757d;
+  --border-radius: 10px;
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.green-energy-dashboard {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 32px;
+  background-color: var(--color-light);
+  border: 1px solid #d4e9d4;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 50, 0, 0.15);
+  transition: transform 220ms ease;
+}
+
+/* Typography */
+header h1 { color: var(--color-primary); font-size: 2.2rem; margin-bottom: 0; }
+.lede { color: var(--color-muted); font-size: 1.15rem; margin-bottom: 20px; }
+h2 { color: var(--color-secondary); font-size: 1.75rem; padding-bottom: 8px; margin-top: 30px; margin-bottom: 15px; border-bottom: 2px solid #a8e6a8; }
+h4 { color: var(--color-secondary); margin: 0 0 4px 0; }
+hr { border: 0; height: 1px; background-color: #e0e0e0; margin: 40px 0; }
+
+/* Quick stats */
+.quick-stats { display: flex; gap: 18px; margin-top: 8px; flex-wrap: wrap; }
+.stat { background: var(--color-white); padding: 15px 20px; border-radius: var(--border-radius); box-shadow: var(--shadow-sm); min-width: 250px; border: 1px solid #eee; flex-grow: 1; }
+.stat-title { font-size: 0.9rem; color: var(--color-muted); margin-bottom: 4px; }
+.stat-value { color: var(--color-primary); font-size: 2rem; font-weight: 800; line-height: 1.2; }
+.stat-value small { font-size: 0.5em; font-weight: 500; color: var(--color-primary); }
+.stat-sub { font-size: 0.8rem; color: var(--color-muted); margin-top: 8px; }
+.stat select { padding: 4px 8px; border-radius: 4px; border: 1px solid #ccc; background-color: #f7fff7; }
+
+/* Impact */
+.impact-section { display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between; align-items: stretch; }
+.impact-card { flex: 1 1 300px; padding: 25px; border-radius: var(--border-radius); background-color: var(--color-white); box-shadow: var(--shadow-sm); transition: all 0.2s ease-in-out; }
+.impact-card h3 { font-size: 2.5rem; color: var(--color-primary); margin: 5px 0 10px 0; }
+.impact-card.highlight { background-color: #e6ffec; border: 2px solid var(--color-primary); box-shadow: 0 4px 10px rgba(0, 112, 60, 0.1); }
+.impact-card p { font-size: 1rem; }
+.impact-card .muted { font-size: 0.85rem; color: var(--color-muted); }
+
+/* Tips */
+.tip-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.tip-card { display: flex; align-items: flex-start; padding: 20px; background: var(--color-white); border-radius: var(--border-radius); box-shadow: var(--shadow-sm); border-left: 6px solid var(--color-accent); cursor: pointer; transition: transform 0.18s ease, box-shadow 0.18s; }
+.tip-card:hover, .tip-card:focus { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-left-color: var(--color-primary); outline: none; }
+.tip-icon { font-size: 2.5rem; margin-right: 15px; line-height: 1; }
+.tip-content p { font-size: 0.95rem; color: #555; margin: 0; }
+
+/* Calculator */
+.calculator { padding: 20px; background: #fff; border-radius: var(--border-radius); border: 1px solid #e9e9e9; }
+.calculator label { font-weight: 600; color: var(--color-secondary); }
+.calculator .calc-row { display: flex; gap: 10px; align-items: center; margin-top: 10px; margin-bottom: 20px; }
+.calculator input[type="number"] { width: 150px; padding: 10px; border-radius: 6px; border: 1px solid #cfead0; font-size: 1rem; text-align: center; }
+.calculator .result { font-size: 1.15rem; line-height: 1.6; padding: 15px; background-color: #ffecc6; border: 1px dashed var(--color-accent); border-radius: 6px; color: #333; }
+.calculator .result strong { color: var(--color-primary); font-weight: 800; }
+
+/* Table */
+.appliance-examples h3 { margin-top: 25px; color: var(--color-secondary); }
+.examples { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 15px; background: var(--color-white); border-radius: var(--border-radius); overflow: hidden; }
+.examples th { padding: 12px 10px; text-align: left; background-color: var(--color-primary); color: var(--color-white); font-size: 0.9rem; font-weight: 600; }
+.examples td { padding: 12px 10px; text-align: left; border-bottom: 1px solid #eee; font-size: 0.9rem; color: #333; }
+.examples tr:last-child td { border-bottom: none; }
+.examples tr:nth-child(even) { background-color: #f7fff7; }
+
+/* Buttons */
+button { cursor: pointer; padding: 10px 20px; border-radius: 6px; font-weight: 600; transition: background-color 0.2s, transform 0.1s; border: none; }
+.btn-primary { background-color: var(--color-primary); color: var(--color-white); border: 1px solid var(--color-primary); box-shadow: 0 4px 8px rgba(0, 112, 60, 0.2); }
+.btn-primary:hover { background-color: var(--color-secondary); box-shadow: 0 6px 12px rgba(0, 112, 60, 0.3); }
+
+/* Footer */
+footer { margin-top: 30px; padding-top: 15px; border-top: 1px solid #e0e0e0; text-align: center; }
+.sources { font-size: 0.8rem; color: var(--color-muted); }
+
+/* Responsive */
+@media (max-width: 900px) { .green-energy-dashboard { padding: 20px; } }
+@media (max-width: 720px) { .impact-section { flex-direction: column; gap: 15px; } .impact-card { min-width: 100%; } }
+@media (max-width: 500px) { .stat { min-width: 100%; } .calculator .calc-row { flex-direction: column; align-items: stretch; } .calculator input[type="number"] { width: 100%; } }

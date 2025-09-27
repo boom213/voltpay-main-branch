@@ -1,0 +1,126 @@
+<div class="green-energy-dashboard" role="region" aria-label="Green energy dashboard">
+  <header>
+    <h1>🌍 Powering a Greener Planet</h1>
+    <p class="lede">Small monthly changes compound — save energy, save money, and shrink your carbon footprint.</p>
+
+    <div class="quick-stats" aria-hidden="false">
+      <div class="stat">
+        <div class="stat-title">Per 1 kWh saved</div>
+        <div class="stat-value">{{ carbonAvoided | number:'1.2-2' }} <small>kg CO₂</small></div>
+        <div class="stat-sub">
+          (based on
+          <select [(ngModel)]="selectedGrid" (ngModelChange)="onGridChange($event)">
+            <option *ngFor="let g of gridOptions" [value]="g.key">{{ g.label }}</option>
+          </select>
+          )
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-title">Average household (India)</div>
+        <div class="stat-value">{{ avgHouseholdKwh }} <small>kWh / month</small></div>
+        <div class="stat-sub">Use this to see scale.</div>
+      </div>
+    </div>
+  </header>
+
+  <section class="impact-section">
+    <h2>Why Your Savings Matter</h2>
+
+    <div class="impact-card">
+      <p>Saving <strong>1 kWh</strong> of electricity avoids releasing approximately:</p>
+      <h3>{{ carbonAvoided | number:'1.2-2' }} kg CO₂</h3>
+      <p class="muted">(Emission factor = {{ emissionFactor | number:'1.2-2' }} kg CO₂ / kWh for {{ selectedGrid }})</p>
+    </div>
+
+    <div class="impact-card highlight">
+      <p>That’s roughly the CO₂ a tree absorbs in a year (range shown):</p>
+      <h3>{{ treesPer1kWhMin | number:'1.0-2' }}–{{ treesPer1kWhMax | number:'1.0-2' }} Trees / year</h3>
+      <p class="muted">(depends on tree age/type — we show conservative → optimistic ranges)</p>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="tips-section">
+    <h2>💡 Quick, evidence-based Energy-Saving Tips</h2>
+    <div class="tip-list">
+      <div *ngFor="let tip of savingTips" class="tip-card" tabindex="0" role="article" [attr.aria-label]="tip.title">
+        <div class="tip-icon">{{ tip.icon }}</div>
+        <div class="tip-content">
+          <h4>{{ tip.title }}</h4>
+          <p>{{ tip.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="calculator">
+    <h2>Calculate Your Potential Impact</h2>
+
+    <label for="kwhInput">Monthly kWh you can save</label>
+    <div class="calc-row">
+      <input id="kwhInput" type="number" [(ngModel)]="userKwhMonth" min="0" />
+      <button class="btn-primary" (click)="recompute()">Calculate</button>
+    </div>
+
+    <div *ngIf="selectedGrid === 'Custom'" class="custom-input">
+      <label for="customEmission">Custom emission factor (kg CO₂ / kWh)</label>
+      <input id="customEmission" type="number" [(ngModel)]="customEmissionFactor" step="0.01"
+             (ngModelChange)="setCustomEmissionFactor($event)" min="0" />
+      <p class="muted">Enter your local grid or a specialised factor (optional).</p>
+    </div>
+
+    <p class="result">
+      If you save <strong>{{ userKwhMonth }} kWh / month</strong> you prevent
+      <strong>{{ impact.co2Month | number:'1.2-2' }} kg CO₂</strong> per month
+      (≈ <strong>{{ impact.co2Year | number:'1.1-0' }} kg</strong> / year),
+      which is like planting <strong>{{ impact.treesConservative | number:'1.1-0' }}</strong>–<strong>{{
+      impact.treesOptimistic | number:'1.1-0' }}</strong> trees.
+      Estimated money saved: <strong>₹{{ impact.moneyMonth | number:'1.0-0' }}</strong> / month
+      (₹{{ impact.moneyYear | number:'1.0-0' }}/yr).
+    </p>
+
+    <div class="appliance-examples">
+      <h3>Concrete examples (annual)</h3>
+      <table class="examples">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>kWh saved / year</th>
+            <th>CO₂ saved (kg / yr)</th>
+            <th>Trees ≈</th>
+            <th>₹ saved / yr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ex of examples">
+            <td>{{ ex.action }}</td>
+            <td>{{ ex.kwh | number:'1.0-0' }}</td>
+            <td>{{ ex.co2 | number:'1.0-0' }}</td>
+            <td>{{ ex.trees | number:'1.0-0' }}</td>
+            <td>₹{{ ex.money | number:'1.0-0' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <hr>
+
+  <section class="challenge">
+    <h2>Start a 30-Day Green Challenge</h2>
+    <ol>
+      <li>Pledge a baseline (e.g., 15 kWh / month) and click "Calculate".</li>
+      <li>Log daily actions (turn off standby, switch 1 bulb to LED, raise AC 1°C).</li>
+      <li>Share your weekly progress — badges and leaderboards increase motivation.</li>
+    </ol>
+    <button class="btn-primary" (click)="startChallenge()">Pledge & Start</button>
+  </section>
+
+  <footer>
+    <p class="sources">Sources: Govt. grid & CO₂ factors, EPA, DOE lighting guidance, OneTreePlanted — links in the docs panel.</p>
+  </footer>
+</div>
