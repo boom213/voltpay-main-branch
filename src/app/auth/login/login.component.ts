@@ -22,37 +22,53 @@ export class LoginComponent {
   form = this.fb.group({
     email: ["", [Validators.required, Validators.email]],
     password: ["", [Validators.required, Validators.minLength(8)]],
+    // New: Add a control for the 'remember me' checkbox
+    rememberMe: [false], 
   });
 
   loading = false;
   error: string | null = null;
 
   submit() {
-    if (this.form.invalid) return this.form.markAllAsTouched();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
     this.loading = true;
     this.data.users().subscribe((users) => {
       const { email, password } = this.form.value as {
         email: string;
         password: string;
       };
+      
       const user = users.find(
         (u) =>
           u.email.toLowerCase() === email.toLowerCase() &&
           u.password === password,
       );
+
       this.loading = false;
+      
       if (!user) {
         this.error = "Invalid email or password";
         return;
       }
+      
       this.error = null;
-      this.auth.login({
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        address: user.address,
-        mobile: user.mobile,
-      });
+      
+      const { rememberMe } = this.form.value as { rememberMe: boolean };
+      this.auth.login(
+        {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          address: user.address,
+          mobile: user.mobile,
+        },
+        rememberMe,
+      );
+      
       this.notify.push("success", "Welcome back!");
       this.router.navigateByUrl("/dashboard");
     });
