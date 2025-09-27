@@ -1,11 +1,10 @@
+import { Component, OnDestroy, OnInit, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
-import { Component, effect, signal } from "@angular/core";
 import { NotificationService, Notice } from "./notification.service";
+import { Subject, takeUntil } from "rxjs";
 
 @Component({
   selector: "app-notification",
-  standalone: true,
-  imports: [CommonModule],
   template: `
     <div
       *ngIf="notice() as n"
@@ -16,13 +15,26 @@ import { NotificationService, Notice } from "./notification.service";
     </div>
   `,
 })
-export class NotificationComponent {
+export class NotificationComponent implements OnInit, OnDestroy {
   protected notice = signal<Notice | null>(null);
 
-  constructor(private notify: NotificationService) {
-    effect(() => {
-      const sub = this.notify.notification.subscribe((n) => this.notice.set(n));
-      return () => sub.unsubscribe();
-    });
+  private destroy$ = new Subject<void>();
+
+  constructor(private notify: NotificationService) {}
+
+  ngOnInit(): void {
+    this.notify.notification
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((n) => {
+        this.notice.set(n);
+        if (n) {
+          setTimeout(() => this.notice.set(null), 3000); 
+        }
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

@@ -1,10 +1,18 @@
-import { Component } from "@angular/core";
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-navbar",
-  standalone: true,
-  imports: [RouterLink, RouterLinkActive],
-  templateUrl: "./navbar.component.html",
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {}
+export class NavbarComponent {
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+}

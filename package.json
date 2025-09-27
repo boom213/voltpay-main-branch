@@ -36,6 +36,7 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.0",
     "@angular/cli": "^16.2.0",
+    "@angular/platform-browser-dynamic": "^16.2.0", 
     "@angular/compiler-cli": "^16.2.0",
     "@tailwindcss/typography": "^0.5.16",
     "@types/jasmine": "~5.1.0",

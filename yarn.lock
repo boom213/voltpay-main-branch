@@ -200,6 +200,13 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/platform-browser-dynamic@^16.2.0":
+  version "16.2.12"
+  resolved "https://registry.npmjs.org/@angular/platform-browser-dynamic/-/platform-browser-dynamic-16.2.12.tgz"
+  integrity sha512-ya54jerNgreCVAR278wZavwjrUWImMr2F8yM5n9HBvsMBbFaAQ83anwbOEiHEF2BlR+gJiEBLfpuPRMw20pHqw==
+  dependencies:
+    tslib "^2.3.0"
+
 "@angular/platform-browser@^16.2.0", "@angular/platform-browser@16.2.12":
   version "16.2.12"
   resolved "https://registry.npmjs.org/@angular/platform-browser/-/platform-browser-16.2.12.tgz"

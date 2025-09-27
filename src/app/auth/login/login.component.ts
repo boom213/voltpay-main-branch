@@ -1,3 +1,4 @@
+
 import { Component, inject } from "@angular/core";
 import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
 import { Router, RouterLink } from "@angular/router";
@@ -8,8 +9,6 @@ import { NotificationService } from "../../shared/notification/notification.serv
 
 @Component({
   selector: "app-login",
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: "./login.component.html",
 })
 export class LoginComponent {

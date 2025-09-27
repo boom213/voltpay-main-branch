@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 
 @Component({
   selector: "app-footer",
-  standalone: true,
   template: `
     <footer class="bg-dark text-light py-4 mt-auto">
       <div class="container d-flex justify-content-between align-items-center">

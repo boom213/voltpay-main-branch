@@ -1,28 +1,19 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-top">
+<nav class="navbar">
   <div class="container">
-    <a class="navbar-brand fw-bold" routerLink="/dashboard">VoltPay</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <a class="brand" routerLink="/dashboard">VoltPay</a>
+    <button class="toggle-button" (click)="toggleMenu()" aria-label="Toggle navigation">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/bills" routerLinkActive="active">Bills</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/complaints" routerLinkActive="active">Complaints</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/profile" routerLinkActive="active">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/help" routerLinkActive="active">Help</a>
-        </li>
+    <div [class.active]="menuOpen" class="navbar-links">
+      <ul>
+        <li><a routerLink="/dashboard" routerLinkActive="active" (click)="closeMenu()">Dashboard</a></li>
+        <li><a routerLink="/bills" routerLinkActive="active" (click)="closeMenu()">Bills</a></li>
+        <li><a routerLink="/complaints" routerLinkActive="active" (click)="closeMenu()">Complaints</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active" (click)="closeMenu()">Profile</a></li>
+        <li><a routerLink="/help" routerLinkActive="active" (click)="closeMenu()">Help</a></li>
       </ul>
     </div>
   </div>
